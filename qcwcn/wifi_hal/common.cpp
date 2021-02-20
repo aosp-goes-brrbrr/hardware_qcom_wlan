@@ -18,7 +18,7 @@
 #include <linux/pkt_sched.h>
 #include <netlink/object-api.h>
 #include <netlink-private/object-api.h>
-#include <netlink-private/types.h>
+#include "netlink-private/types.h"
 #include <dlfcn.h>
 #include <pthread.h>
 
