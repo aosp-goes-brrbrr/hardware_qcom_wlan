@@ -51,6 +51,13 @@ LOCAL_CLANG_CFLAGS := -Wno-pointer-bool-conversion
 
 LOCAL_CFLAGS += -Wall -Werror
 
+ifdef WIFI_DRIVER_STATE_CTRL_PARAM
+LOCAL_CFLAGS += -DWIFI_DRIVER_STATE_CTRL_PARAM=\"$(WIFI_DRIVER_STATE_CTRL_PARAM)\"
+ifdef WIFI_DRIVER_STATE_ON
+LOCAL_CFLAGS += -DWIFI_DRIVER_STATE_ON=\"$(WIFI_DRIVER_STATE_ON)\"
+endif
+endif
+
 LOCAL_C_INCLUDES += \
 	$(LOCAL_PATH) \
 	external/libnl/include \
@@ -86,7 +93,7 @@ LOCAL_SRC_FILES := \
 LOCAL_MODULE := libwifi-hal-qcom
 LOCAL_VENDOR_MODULE := true
 LOCAL_CLANG := true
-LOCAL_SHARED_LIBRARIES += libnetutils liblog libwpa_client libcld80211
+LOCAL_SHARED_LIBRARIES += libnetutils liblog libcld80211
 
 ifneq ($(wildcard external/libnl),)
 LOCAL_SHARED_LIBRARIES += libnl
@@ -118,6 +125,13 @@ endif
 
 # gscan.cpp: address of array 'cached_results[i].results' will always evaluate to 'true'
 LOCAL_CLANG_CFLAGS := -Wno-pointer-bool-conversion
+
+ifdef WIFI_DRIVER_STATE_CTRL_PARAM
+LOCAL_CFLAGS += -DWIFI_DRIVER_STATE_CTRL_PARAM=\"$(WIFI_DRIVER_STATE_CTRL_PARAM)\"
+ifdef WIFI_DRIVER_STATE_ON
+LOCAL_CFLAGS += -DWIFI_DRIVER_STATE_ON=\"$(WIFI_DRIVER_STATE_ON)\"
+endif
+endif
 
 LOCAL_C_INCLUDES += \
 	$(LOCAL_PATH) \
@@ -156,7 +170,7 @@ LOCAL_MODULE := libwifi-hal-qcom
 LOCAL_VENDOR_MODULE := true
 LOCAL_CLANG := true
 LOCAL_SHARED_LIBRARIES += libnetutils liblog
-LOCAL_SHARED_LIBRARIES += libdl libwpa_client libcld80211
+LOCAL_SHARED_LIBRARIES += libdl libcld80211
 LOCAL_SHARED_LIBRARIES += libwifi-hal-ctrl
 
 ifneq ($(wildcard external/libnl),)
